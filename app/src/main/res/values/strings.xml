@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Kudi</string>
+    <string name="drawer_open">Menu opened</string>
+    <string name="drawer_close">Menu closed</string>
+    <string name="action_settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="convert_currency">Convert Currency</string>
+    <string name="exchange_rates">Exchange Rates</string>
+    <string name="create_account">Setup a New Account</string>
+    <string name="view_account">View Details of an Account</string>
+    <string name="view_accounts">View all Accounts</string>
+    <string name="create_transaction">Perform a Simple Transaction</string>
+    <string name="create_btransaction">Perform a Batch Transaction</string>
+    <string name="view_transaction">View Details of a Transaction</string>
+    <string name="view_transactions">View all Transactions</string>
+</resources>
