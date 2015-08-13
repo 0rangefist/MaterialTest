@@ -4,7 +4,12 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
         android:layout_width="wrap_content"
+        android:fontFamily="Roboto"
+        android:textSize="25dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="You Are In Profile Fragment"

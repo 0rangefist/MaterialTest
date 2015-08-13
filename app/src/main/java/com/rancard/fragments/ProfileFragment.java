@@ -11,16 +11,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.rancard.kudi.client.async.Callback;
-import com.rancard.kudi.client.async.Kudi;
 import com.rancard.kudi.domain.User;
 import com.rancard.materialtest.R;
 
 /**
  * Created by rancard on 8/12/15.
  */
-public class ProfileFragment extends Fragment {
-    static Kudi kudiInstance = Kudi.newInstance("http://192.168.43.247:8080/wallet/api/v1");
-    static Kudi.Session session = kudiInstance.getSession("877");
+public class ProfileFragment extends Fragment implements MainFragment {
+//    static Kudi kudiInstance = Kudi.newInstance("http://10.42.0.1:8080/wallet/api/v1");
+//    static Kudi.Session session = kudiInstance.getSession("877");
     String userProfile;
     TextView textView;
     public static Activity mActivity;
@@ -30,7 +29,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         textView = (TextView) v.findViewById(R.id.textView);
-        textView.setText("content");
+
         mActivity = getActivity();
 
         return v;
@@ -40,6 +39,15 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        onCreate(savedInstanceState);
 
         Log.d("Debug", "session: " + session);
         session.userProfile(new Callback<User>() {
@@ -56,10 +64,10 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void run() {
 
-                        userProfile = "First Name: " + user.getFirstName() + "/n";
-                        userProfile = userProfile + "Last Name: " + user.getLastName() + "/n";
-                        userProfile = userProfile + "Email: " + user.getEmail() + "/n";
-                        userProfile = userProfile + "Country" + user.getCountry() + "/n";
+                        userProfile = "First Name: " + user.getFirstName() + "\n";
+                        userProfile = userProfile + "Last Name: " + user.getLastName() + "\n";
+                        userProfile = userProfile + "Email: " + user.getEmail() + "\n";
+                        userProfile = userProfile + "Country" + user.getCountry() + "\n";
                         userProfile = userProfile + "Mobile Number: " + user.getMobileNumber();
                         String name = user.getFirstName();
                         textView.setText(userProfile);
@@ -71,10 +79,5 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 }

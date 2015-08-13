@@ -13,4 +13,13 @@
     <string name="create_btransaction">Perform a Batch Transaction</string>
     <string name="view_transaction">View Details of a Transaction</string>
     <string name="view_transactions">View all Transactions</string>
+
+    <string-array name="currency">
+        <item>USD</item>
+        <item>GHS</item>
+        <item>GBP</item>
+        <item>ZAR</item>
+        <item>NGN</item>
+        <item>EUR</item>
+    </string-array>
 </resources>

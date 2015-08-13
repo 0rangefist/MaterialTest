@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="You Are In Create Account Fragment"
-        android:id="@+id/textView"
+        android:id="@+id/accountNumber"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 

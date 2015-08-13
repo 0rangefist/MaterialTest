@@ -12,7 +12,7 @@ import com.rancard.materialtest.R;
 /**
  * Created by rancard on 8/12/15.
  */
-public class ViewTransactionFragment extends Fragment {
+public class ViewTransactionFragment extends Fragment implements MainFragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_view_transaction,container,false);
