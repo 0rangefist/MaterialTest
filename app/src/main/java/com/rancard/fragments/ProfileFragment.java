@@ -67,7 +67,7 @@ public class ProfileFragment extends Fragment implements MainFragment {
                         userProfile = "First Name: " + user.getFirstName() + "\n";
                         userProfile = userProfile + "Last Name: " + user.getLastName() + "\n";
                         userProfile = userProfile + "Email: " + user.getEmail() + "\n";
-                        userProfile = userProfile + "Country" + user.getCountry() + "\n";
+                        userProfile = userProfile + "Country: " + user.getCountry() + "\n";
                         userProfile = userProfile + "Mobile Number: " + user.getMobileNumber();
                         String name = user.getFirstName();
                         textView.setText(userProfile);

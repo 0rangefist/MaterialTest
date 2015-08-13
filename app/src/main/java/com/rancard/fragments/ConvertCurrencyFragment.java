@@ -3,16 +3,19 @@ package com.rancard.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.rancard.kudi.client.async.Kudi;
+import com.rancard.kudi.client.async.Callback;
+import com.rancard.kudi.domain.Currency;
 import com.rancard.materialtest.R;
 
 /**
@@ -23,9 +26,10 @@ public class ConvertCurrencyFragment extends Fragment implements MainFragment{
     Spinner fromCurrency;
     EditText amount;
     TextView displayConversion;
+    Button convert;
+    Enum to;
+    Enum from;
 
-    static Kudi kudiInstance = Kudi.newInstance("http://10.42.0.1:8080/wallet/api/v1");
-    static Kudi.Session session = kudiInstance.getSession("877");
     String userProfile;
     TextView textView;
     public static Activity mActivity;
@@ -39,6 +43,7 @@ public class ConvertCurrencyFragment extends Fragment implements MainFragment{
         fromCurrency = (Spinner)v.findViewById(R.id.from_currency);
         amount = (EditText)v.findViewById(R.id.amount);
         displayConversion = (TextView)v.findViewById(R.id.convert_currency);
+        convert = (Button)v.findViewById(R.id.convert);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.currency,android.R.layout.simple_dropdown_item_1line);
@@ -48,12 +53,115 @@ public class ConvertCurrencyFragment extends Fragment implements MainFragment{
         toCurrency.setAdapter(adapter);
         fromCurrency.setAdapter(adapter);
 
+        toCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Println",parent.getItemAtPosition(position).toString());
+
+                if (parent.getItemAtPosition(position).toString().equals("USD") ) {
+                    to = Currency.USD;
+                }
+                if (parent.getItemAtPosition(position).toString().equals("EUR")) {
+                    to = Currency.EUR;
+                }
+
+                if (parent.getItemAtPosition(position).toString().equals("GBP")) {
+                    to = Currency.GBP;
+                }
+
+                if (parent.getItemAtPosition(position).toString().equals("NGN")) {
+                    to = Currency.NGN;
+                }
+
+                if (parent.getItemAtPosition(position).toString().equals("GHS")) {
+                    to = Currency.GHS;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        fromCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("Print",parent.getItemAtPosition(position).toString());
+
+                if (parent.getItemAtPosition(position).toString().equals("USD")) {
+                    from = Currency.USD;
+                }
+                if (parent.getItemAtPosition(position).toString().equals("EUR")) {
+                    from = Currency.EUR;
+                }
+
+                if (parent.getItemAtPosition(position).toString().equals("GBP")) {
+                    from = Currency.GBP;
+                }
+
+                if (parent.getItemAtPosition(position).toString().equals("NGN")) {
+                    from = Currency.NGN;
+                }
+
+                if (parent.getItemAtPosition(position).toString().equals("GHS")) {
+                    from = Currency.GHS;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        convert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Double _amount = Double.parseDouble(amount.getText().toString());
+                Log.d("Enum from", from.toString());
+                Log.d("Amount", _amount.toString());
+                Log.d("Enum to",to.toString());
+
+
+                kudiInstance.convertCurrency(_amount, to, from, new Callback<Double>() {
+                    @Override
+                    public void onFailure(String s, int i) {
+                        Log.d("On Failure", s + " " + i);
+                    }
+
+                    @Override
+                    public void onSuccess(final Double aDouble) {
+
+                        mActivity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d("On Success", aDouble.toString());
+                                displayConversion.setText(aDouble.toString());
+                            }
+                        });
+
+
+
+                    }
+                });
+            }
+        });
+
+
         return v;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        Log.d("amount", amount.getText().toString());
+
+
+
 
 
     }
@@ -62,26 +170,6 @@ public class ConvertCurrencyFragment extends Fragment implements MainFragment{
     public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-       String _amount = amount.getText().toString();
-        Enum to;
-        Enum from;
-
-        toCurrency.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-              if(parent.getPo)
-            }
-        });
-
-
-        fromCurrency.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-
-
+        onCreate(savedInstanceState);
     }
 }
