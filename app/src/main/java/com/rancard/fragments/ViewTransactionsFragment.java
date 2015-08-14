@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.rancard.kudi.client.async.Callback;
 import com.rancard.kudi.domain.Transaction;
@@ -21,23 +22,25 @@ import java.util.List;
 /**
  * Created by rancard on 8/12/15.
  */
-public class ViewTransactionsFragment extends Fragment implements MainFragment{
+public class ViewTransactionsFragment extends Fragment implements MainFragment {
     private static Activity mActivity;
-    private ListView transactionListView;
+    List transactionList = new ArrayList();
     ArrayAdapter transactionListAdapter;
+    private ListView transactionListView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v =inflater.inflate(R.layout.fragment_view_transactions,container,false);
+        View v = inflater.inflate(R.layout.fragment_view_transactions, container, false);
         transactionListView = (ListView) v.findViewById(R.id.transaction_list);
+
+        //create an arrayAdapter for the listView
+        transactionListAdapter = new ArrayAdapter(v.getContext(), android.R.layout.simple_list_item_1, transactionList);
+
+        //set the listView to use the arrayAdapter
+        transactionListView.setAdapter(transactionListAdapter);
 
         mActivity = getActivity();
         return v;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -45,37 +48,44 @@ public class ViewTransactionsFragment extends Fragment implements MainFragment{
         super.onActivityCreated(savedInstanceState);
         onCreate(savedInstanceState);
 
+        populateList();
         Log.d("Debug", "session: " + session);
-        Transaction.Query query = new Transaction.Query();
-        query.setLimit(200);
+    }
 
+    public void populateList() {
+        Transaction.Query query = new Transaction.Query();
+        query.setEvent(Transaction.Event.CREDIT);
+        query.setLimit(200);
+        query.setAccount(12345432323234343L);
+        query.setFrom(23534L);
+        query.setTo(1233L);
+        query.setState(Transaction.State.PENDING);
+        query.setOffset(1234L);
         session.viewTransactionList(query, new Callback<List<Transaction>>() {
             @Override
             public void onFailure(String s, int i) {
-                Log.d("error", s + " " + i);
+                Log.d("transaction error: s", i + "");
+                //set dummy list data
+                transactionList.add("Failed to retrieve transactions");
+                transactionList.add("Failed to retrieve transactions");
+                transactionList.add("Failed to retrieve transactions");
+                transactionList.add("Failed to retrieve transactions");
 
+                transactionListAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onSuccess(final List<Transaction> transactions) {
                 mActivity.runOnUiThread(new Runnable() {
-
-                    ArrayList<Transaction> trans = (ArrayList<Transaction>) transactions;
-
                     @Override
                     public void run() {
-                        //create an arrayAdapter for the listView
-                        transactionListAdapter = new ArrayAdapter(mActivity, android.R.layout.simple_list_item_1, trans);
-
-                        //set the listView to use the arrayAdapter
-                        transactionListView.setAdapter(transactionListAdapter);
+                        for (Transaction i : transactions) {
+                            transactionList.add(i);
+                        }
                         transactionListAdapter.notifyDataSetChanged();
-                        Log.d("YAY", "Successful");
-
                     }
                 });
             }
         });
-
     }
 }

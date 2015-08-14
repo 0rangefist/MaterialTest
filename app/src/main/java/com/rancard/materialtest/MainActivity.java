@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
             setTitle(R.string.view_transactions);
         }
-        Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Menu item selected -> " + position, Toast.LENGTH_SHORT).show();
     }
 
 
