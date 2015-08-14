@@ -8,5 +8,4 @@ import com.rancard.kudi.client.async.Kudi;
 public interface  MainFragment {
     Kudi kudiInstance = Kudi.newInstance("http://192.168.43.247:8080/wallet/api/v1");
     Kudi.Session session = kudiInstance.getSession("877");
-
 }

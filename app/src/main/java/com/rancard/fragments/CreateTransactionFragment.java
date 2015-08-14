@@ -33,6 +33,7 @@ public class CreateTransactionFragment extends Fragment implements MainFragment,
         accountFromEditText = (EditText) v.findViewById(R.id.account_source_entry);
         accountToEditText = (EditText) v.findViewById(R.id.account_target_entry);
         amountEditText = (EditText) v.findViewById(R.id.amount_entry);
+
         submitButton = (Button) v.findViewById(R.id.create_transaction_button);
         submitButton.setOnClickListener(this);
 
@@ -81,15 +82,15 @@ public class CreateTransactionFragment extends Fragment implements MainFragment,
         String sourceString = accountFromEditText.getText().toString();
         String targetString = accountToEditText.getText().toString();
         String amountString = amountEditText.getText().toString();
-        if(TextUtils.isEmpty(sourceString)) {
+        if (TextUtils.isEmpty(sourceString)) {
             accountFromEditText.setError("Cannot be empty");
             return;
         }
-        if(TextUtils.isEmpty(targetString)) {
+        if (TextUtils.isEmpty(targetString)) {
             accountToEditText.setError("Cannot be empty");
             return;
         }
-        if(TextUtils.isEmpty(amountString)) {
+        if (TextUtils.isEmpty(amountString)) {
             amountEditText.setError("Cannot be empty");
             return;
         }

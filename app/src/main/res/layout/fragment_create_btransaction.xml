@@ -1,16 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/batch_transaction">
 
-
-    <TextView
+    <EditText
+        android:id="@+id/bamount_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="You Are In Create Batch Transaction Fragment"
-        android:id="@+id/textView"
-        android:layout_centerVertical="true"
+        android:hint="Amount"
+        android:numeric="decimal"
+        android:maxLines="1"
+        android:maxLength="20"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/baccount_source_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Source account number"
+        android:inputType="number"
+        android:maxLength="10"
+        android:layout_below="@+id/bamount_entry"
+        android:layout_alignRight="@+id/baccount_target_entry"
+        android:layout_alignEnd="@+id/baccount_target_entry" />
+
+    <EditText
+        android:id="@+id/baccount_target_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Target account number"
+        android:inputType="number"
+        android:maxLength="10"
+        android:layout_below="@+id/baccount_source_entry"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/add_btransaction_button"
+        android:text="Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/submit_btransaction_button"
+        android:layout_toLeftOf="@+id/submit_btransaction_button"
+        android:layout_toStartOf="@+id/submit_btransaction_button" />
+
+    <Button
+        android:id="@+id/submit_btransaction_button"
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/baccount_target_entry"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/cancel_btransaction_button"
+        android:text="Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/submit_btransaction_button"
+        android:layout_toRightOf="@+id/submit_btransaction_button"
+        android:layout_toEndOf="@+id/submit_btransaction_button" />
+
+    <ListView
+        android:id="@+id/btransaction_list"
+        android:layout_width="match_parent"
+        android:layout_below="@id/submit_btransaction_button"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"/>
 
 </RelativeLayout>
