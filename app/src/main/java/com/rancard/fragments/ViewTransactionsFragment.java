@@ -13,7 +13,7 @@ import android.widget.ListView;
 
 import com.rancard.kudi.client.async.Callback;
 import com.rancard.kudi.domain.Transaction;
-import com.rancard.main.R;
+import com.rancard.materialtest.R;
 
 import java.util.ArrayList;
 import java.util.List;

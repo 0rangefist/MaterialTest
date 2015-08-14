@@ -1,4 +1,4 @@
-package com.rancard.main;
+package com.rancard.materialtest;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;

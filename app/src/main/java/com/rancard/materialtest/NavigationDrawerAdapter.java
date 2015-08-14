@@ -1,4 +1,4 @@
-package com.rancard.main;
+package com.rancard.materialtest;
 
 
 import android.support.v7.widget.RecyclerView;

@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.rancard.main.R;
+import com.rancard.materialtest.R;
 
 /**
  * Created by rancard on 8/11/15.

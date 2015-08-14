@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.rancard.kudi.client.async.Callback;
 import com.rancard.kudi.domain.Account;
-import com.rancard.main.R;
+import com.rancard.materialtest.R;
 
 /**
  * Created by rancard on 8/12/15.
