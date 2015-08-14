@@ -29,7 +29,7 @@ public class ProfileFragment extends Fragment implements MainFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         profileDetails = (TextView) v.findViewById(R.id.details);
-        profileName = (TextView) v.findViewById(R.id.name);
+        profileName = (TextView) v.findViewById(R.id.id_label);
 
         mActivity = getActivity();
 

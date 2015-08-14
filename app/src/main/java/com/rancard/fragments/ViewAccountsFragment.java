@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by rancard on 8/12/15.
  */
-public class ViewAccountsFragment extends Fragment implements MainFragment{
+public class ViewAccountsFragment extends Fragment implements MainFragment {
     private static Activity mActivity;
     private ListView accountListView;
     List accountList = new ArrayList();

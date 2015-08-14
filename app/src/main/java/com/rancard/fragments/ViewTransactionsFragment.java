@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.rancard.adapters.TransactionListAdapter;
 import com.rancard.kudi.client.async.Callback;
 import com.rancard.kudi.domain.Transaction;
 import com.rancard.materialtest.R;
@@ -24,8 +25,8 @@ import java.util.List;
  */
 public class ViewTransactionsFragment extends Fragment implements MainFragment {
     private static Activity mActivity;
-    List transactionList = new ArrayList();
-    ArrayAdapter transactionListAdapter;
+    List<Transaction> transactionList = new ArrayList();
+    TransactionListAdapter transactionListAdapter;
     private ListView transactionListView;
 
     @Override
@@ -34,7 +35,7 @@ public class ViewTransactionsFragment extends Fragment implements MainFragment {
         transactionListView = (ListView) v.findViewById(R.id.transaction_list);
 
         //create an arrayAdapter for the listView
-        transactionListAdapter = new ArrayAdapter(v.getContext(), android.R.layout.simple_list_item_1, transactionList);
+        transactionListAdapter = new TransactionListAdapter(v.getContext(), transactionList);
 
         //set the listView to use the arrayAdapter
         transactionListView.setAdapter(transactionListAdapter);
@@ -65,13 +66,7 @@ public class ViewTransactionsFragment extends Fragment implements MainFragment {
             @Override
             public void onFailure(String s, int i) {
                 Log.d("transaction error: s", i + "");
-                //set dummy list data
-                transactionList.add("Failed to retrieve transactions");
-                transactionList.add("Failed to retrieve transactions");
-                transactionList.add("Failed to retrieve transactions");
-                transactionList.add("Failed to retrieve transactions");
 
-                transactionListAdapter.notifyDataSetChanged();
             }
 
             @Override
