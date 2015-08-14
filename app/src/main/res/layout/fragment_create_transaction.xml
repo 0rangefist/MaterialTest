@@ -3,14 +3,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
+    <EditText
+        android:id="@+id/account_source_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="You Are In Create Transaction Fragment"
-        android:id="@+id/textView"
+        android:hint="Source account number"
+        android:inputType="number"
+        android:maxLength="10"
         android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/account_target_entry"/>
+
+    <EditText
+        android:id="@+id/account_target_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Target account number"
+        android:layout_centerInParent="true"
+        android:inputType="number"
+        android:maxLength="10"
+        android:layout_alignRight="@+id/account_source_entry"
+        android:layout_alignEnd="@+id/account_source_entry" />
+
+    <EditText
+        android:id="@+id/amount_entry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/account_source_entry"
+        android:hint="Amount"
+        android:numeric="decimal"
+        android:layout_marginTop="25dp"
+        android:maxLines="1"
+        android:maxLength="20"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/create_transaction_button"
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/account_target_entry"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

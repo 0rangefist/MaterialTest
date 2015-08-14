@@ -3,6 +3,7 @@ package com.rancard.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +25,8 @@ import com.rancard.materialtest.R;
 public class ConvertCurrencyFragment extends Fragment implements MainFragment{
     Spinner toCurrency;
     Spinner fromCurrency;
-    EditText amount;
-    TextView displayConversion;
+    EditText amountEditText;
+    TextView conversionTextView;
     Button convert;
     Enum to;
     Enum from;
@@ -41,8 +42,8 @@ public class ConvertCurrencyFragment extends Fragment implements MainFragment{
         mActivity = getActivity();
         toCurrency = (Spinner)v.findViewById(R.id.to_currency);
         fromCurrency = (Spinner)v.findViewById(R.id.from_currency);
-        amount = (EditText)v.findViewById(R.id.amount);
-        displayConversion = (TextView)v.findViewById(R.id.convert_currency);
+        amountEditText = (EditText)v.findViewById(R.id.amount);
+        conversionTextView = (TextView)v.findViewById(R.id.convert_currency);
         convert = (Button)v.findViewById(R.id.convert);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
@@ -88,7 +89,7 @@ public class ConvertCurrencyFragment extends Fragment implements MainFragment{
         fromCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("Print",parent.getItemAtPosition(position).toString());
+                Log.d("Print", parent.getItemAtPosition(position).toString());
 
                 if (parent.getItemAtPosition(position).toString().equals("USD")) {
                     from = Currency.USD;
@@ -117,16 +118,29 @@ public class ConvertCurrencyFragment extends Fragment implements MainFragment{
             }
         });
 
+        return v;
+    }
+
+
+    @Override
+    public void onActivityCreated( Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        onCreate(savedInstanceState);
+
         convert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Double _amount = Double.parseDouble(amount.getText().toString());
+                String amountString = amountEditText.getText().toString();
+                if(TextUtils.isEmpty(amountString)) {
+                    amountEditText.setError("Cannot be empty");
+                    return;
+                }
+                final Double _amount = Double.parseDouble(amountEditText.getText().toString());
                 Log.d("Enum from", from.toString());
                 Log.d("Amount", _amount.toString());
-                Log.d("Enum to",to.toString());
+                Log.d("Enum to", to.toString());
 
-
-                kudiInstance.convertCurrency(_amount, to, from, new Callback<Double>() {
+                kudiInstance.convertCurrency(_amount, from, to, new Callback<Double>() {
                     @Override
                     public void onFailure(String s, int i) {
                         Log.d("On Failure", s + " " + i);
@@ -139,37 +153,14 @@ public class ConvertCurrencyFragment extends Fragment implements MainFragment{
                             @Override
                             public void run() {
                                 Log.d("On Success", aDouble.toString());
-                                displayConversion.setText(aDouble.toString());
+                                conversionTextView.setText(aDouble.toString());
                             }
                         });
-
 
 
                     }
                 });
             }
         });
-
-
-        return v;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-//        Log.d("amount", amount.getText().toString());
-
-
-
-
-
-    }
-
-    @Override
-    public void onActivityCreated( Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        onCreate(savedInstanceState);
     }
 }

@@ -3,13 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
+    <EditText
+        android:id="@+id/account_name_entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="You Are In Create Account Fragment"
-        android:id="@+id/accountNumber"
+        android:hint="Enter your new account name"
+        android:inputType="text"
+        android:maxLines="1"
+        android:maxLength="30"
+        android:layout_above="@+id/create_account_button"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/create_account_button"
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
