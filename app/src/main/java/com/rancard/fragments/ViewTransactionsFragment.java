@@ -10,12 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.rancard.kudi.client.async.Callback;
 import com.rancard.kudi.domain.Transaction;
-import com.rancard.kudi.domain.User;
-import com.rancard.materialtest.R;
+import com.rancard.main.R;
 
 import java.util.ArrayList;
 import java.util.List;

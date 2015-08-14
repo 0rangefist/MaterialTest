@@ -10,12 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rancard.kudi.client.async.Callback;
 import com.rancard.kudi.domain.Account;
-import com.rancard.materialtest.R;
+import com.rancard.main.R;
 
 /**
  * Created by rancard on 8/12/15.

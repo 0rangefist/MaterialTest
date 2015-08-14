@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.rancard.kudi.client.async.Callback;
 import com.rancard.kudi.domain.User;
-import com.rancard.materialtest.R;
+import com.rancard.main.R;
 
 /**
  * Created by rancard on 8/12/15.

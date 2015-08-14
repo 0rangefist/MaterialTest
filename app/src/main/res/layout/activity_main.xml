@@ -25,7 +25,7 @@
             android:clickable="true" />
     </LinearLayout>
     <!-- android:layout_marginTop="?android:attr/actionBarSize"-->
-    <com.rancard.materialtest.ScrimInsetsFrameLayout
+    <com.rancard.main.ScrimInsetsFrameLayout
         android:id="@+id/scrimInsetsFrameLayout"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="wrap_content"
@@ -36,13 +36,13 @@
 
         <fragment
             android:id="@+id/fragment_drawer"
-            android:name="com.rancard.materialtest.NavigationDrawerFragment"
+            android:name="com.rancard.main.NavigationDrawerFragment"
             android:layout_width="@dimen/navigation_drawer_width"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
             app:layout="@layout/fragment_navigation_drawer"
             tools:layout="@layout/fragment_navigation_drawer" />
-    </com.rancard.materialtest.ScrimInsetsFrameLayout>
+    </com.rancard.main.ScrimInsetsFrameLayout>
 
 
 </android.support.v4.widget.DrawerLayout>

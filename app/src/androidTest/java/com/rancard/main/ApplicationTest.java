@@ -1,4 +1,4 @@
-package com.rancard.materialtest;
+package com.rancard.main;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
